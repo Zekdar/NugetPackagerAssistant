@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 
-namespace NugetPackagerAssistant
+namespace NugetPackagerAssistant.Common
 {
     public class XmlHelper
     {

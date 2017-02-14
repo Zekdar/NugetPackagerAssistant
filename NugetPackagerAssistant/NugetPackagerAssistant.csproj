@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ConsoleHelper.cs" />
+    <Compile Include="Common\ProcessHelper.cs" />
     <Compile Include="NugetPackager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlHelper.cs" />
+    <Compile Include="Common\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

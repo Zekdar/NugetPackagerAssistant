@@ -1,0 +1,21 @@
+# Local-only VS/Re#/etc files
+*.suo
+*.vs/
+*.user
+*.gpState
+_ReSharper.*
+.*.swp
+*.wixobj
+*.msi
+/Auth.targets
+
+# Build outputs
+bin
+obj
+/Releases
+/tmp
+
+# 3rd-party stuff copied during build
+/packages
+GitTfs/git2.*
+.paket/paket.exe

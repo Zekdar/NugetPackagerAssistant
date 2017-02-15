@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Common\ConsoleHelper.cs" />
     <Compile Include="Common\ProcessHelper.cs" />
+    <Compile Include="Exceptions\NuspecException.cs" />
     <Compile Include="NugetPackager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -17,7 +17,7 @@ namespace NugetPackagerAssistant
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine(ex);
+                Console.Error.WriteLine(ex.Message);
             }
             finally
             {

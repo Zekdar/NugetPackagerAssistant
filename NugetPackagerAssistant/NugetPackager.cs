@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using NugetPackagerAssistant.Exceptions;
 
 namespace NugetPackagerAssistant
 {
@@ -84,13 +85,10 @@ namespace NugetPackagerAssistant
             Console.WriteLine(sb.ToString());
         }
 
-        private bool GenerateNuspec()
+        private void GenerateNuspec()
         {
             if (_dlls.Length == 0)
-            {
-                Console.Error.WriteLine("No DLL found in this folder.");
-                return false;
-            }
+                throw new NuspecException("No DLL found in this folder.");
 
             Process process = ProcessHelper.StartNewProcess(_nugetExePath, _tmpDirectoryPath);
 
@@ -105,8 +103,6 @@ namespace NugetPackagerAssistant
                 _nuspecs.Add(string.Concat(_tmpDirectoryPath, Path.DirectorySeparatorChar, Path.GetFileNameWithoutExtension(dll), ".nuspec"));
                 Console.WriteLine("{0}.nuspec created", Path.GetFileNameWithoutExtension(dll));
             }
-
-            return true;
         }
 
         private void GenerateNuspecAndPackDlls()
@@ -115,11 +111,10 @@ namespace NugetPackagerAssistant
 
             Directory.CreateDirectory(_tmpDirectoryPath);
 
-            if (!GenerateNuspec())
-            {
-                CleanNuspecs();
-                PackNuspecs();
-            }
+            GenerateNuspec();
+
+            CleanNuspecs();
+            PackNuspecs();
 
             Directory.Delete(_tmpDirectoryPath, true);
         }
@@ -172,11 +167,8 @@ namespace NugetPackagerAssistant
         private void PackCsproj()
         {
             GetCsprojFromUserInput();
-            string arguments =
-                string.Format(
-                    "pack \"{0}\" -noninteractive -prop configuration=Release -build -outputdirectory \"{1}\"",
-                    _csprojPathFromuserInput, _outputDirectory);
 
+            var arguments = string.Format("pack \"{0}\" -noninteractive -prop configuration=Release -build -outputdirectory \"{1}\"", _csprojPathFromuserInput, _outputDirectory);
             var process = ProcessHelper.StartNewProcess(_nugetExePath, _outputDirectory, arguments);
 
             process.Start();

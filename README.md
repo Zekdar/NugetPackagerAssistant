@@ -1,5 +1,5 @@
 # NugetPackagerAssistant
-This tool will assist you when packaging your code into NuGet modules (nupkg). If you have a team repository for instance, this tool could help you packaging your shared dll, wheter you have the source code (csproj) or only the dlls.
+This tool will assist you when packaging your code into NuGet modules (nupkg). If you have a team repository for instance, this tool could help you packaging your shared dlls, whether you have the source code (csproj) or only the dlls.
 
 Prerequisites
 ---

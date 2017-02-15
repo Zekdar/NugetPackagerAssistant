@@ -1,4 +1,5 @@
 ﻿using NugetPackagerAssistant.Common;
+using NugetPackagerAssistant.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using NugetPackagerAssistant.Exceptions;
 
 namespace NugetPackagerAssistant
 {
@@ -112,7 +112,6 @@ namespace NugetPackagerAssistant
             Directory.CreateDirectory(_tmpDirectoryPath);
 
             GenerateNuspec();
-
             CleanNuspecs();
             PackNuspecs();
 

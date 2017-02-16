@@ -81,7 +81,7 @@ namespace NugetPackagerAssistant
             sb.AppendLine("==============");
             sb.AppendLine("There are two options to create a NuGet :");
             sb.AppendLine("A - You have the source code (with the .csproj)");
-            sb.AppendLine("B - You only have a DLL (a tierce library for instance)");
+            sb.AppendLine("B - You only have a DLL (a third party library for instance)");
             Console.WriteLine(sb.ToString());
         }
 

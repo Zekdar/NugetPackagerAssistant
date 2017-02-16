@@ -13,7 +13,7 @@ Prerequisites
 Executing the tool
 ---
 - After building the project, you can directly run the NugetPackagerAssistant.exe generated file but don't forget to set the options (see the Prerequisites section)
-- You can call the NugetPackagerAssistant.exe with arguments instead of configuring the App.config. If you do, you **must** provider exactly 3 arguments in that specific order : **nugetDirectory outputDirectory publishDirectory**
+- You can call the NugetPackagerAssistant.exe with arguments instead of configuring the App.config. If you do, you **must** provide exactly 3 arguments in that specific order : **nugetDirectory outputDirectory publishDirectory**
 
 There are currently 2 modes when it comes to create a Nuget package
 

@@ -41,6 +41,7 @@ namespace NugetPackagerAssistant
                 GenerateNuspecAndPackDlls();
 
             PublishNupkgToSharedFolder();
+            CleanOutputDir();
         }
 
         private void CleanNuspecs()
@@ -71,7 +72,13 @@ namespace NugetPackagerAssistant
         {
             var targetLocation = string.Concat(_publishDirectory, Path.DirectorySeparatorChar, Path.GetFileName(fileName));
             File.Copy(fileName, targetLocation, true);
-            Console.WriteLine("{0} has been published", Path.GetFileName(fileName));
+            Console.WriteLine("    {0} has been published", Path.GetFileName(fileName));
+        }
+
+        private void DeleteFile(string fileName)
+        {
+            File.Delete(fileName);
+            Console.WriteLine("    {0} has been deleted", Path.GetFileName(fileName));
         }
 
         private void DisplayMenu()
@@ -101,7 +108,7 @@ namespace NugetPackagerAssistant
                 process.WaitForExit(10000);
 
                 _nuspecs.Add(string.Concat(_tmpDirectoryPath, Path.DirectorySeparatorChar, Path.GetFileNameWithoutExtension(dll), ".nuspec"));
-                Console.WriteLine("{0}.nuspec created", Path.GetFileNameWithoutExtension(dll));
+                Console.WriteLine("    {0}.nuspec created", Path.GetFileNameWithoutExtension(dll));
             }
         }
 
@@ -188,7 +195,7 @@ namespace NugetPackagerAssistant
                 process.Start();
                 process.WaitForExit(10000);
 
-                Console.WriteLine("{0}.nupkg created", Path.GetFileNameWithoutExtension(nuspec));
+                Console.WriteLine("    {0}.nupkg created", Path.GetFileNameWithoutExtension(nuspec));
             }
         }
 
@@ -202,5 +209,18 @@ namespace NugetPackagerAssistant
                 Console.WriteLine("The publication of your .nupkg has complete");
             }
         }
+
+        private void CleanOutputDir()
+        {
+            Console.WriteLine("Would you like us to clean your output folder ?");
+
+            if (ConsoleHelper.PromptChoices(ConsoleKey.Y, ConsoleKey.N) == ConsoleKey.Y)
+            {
+                Directory.GetFiles(_outputDirectory, "*.nupkg").ToList().ForEach(DeleteFile);
+                Console.WriteLine("Your output folder ({0}) is now empty.",_outputDirectory);
+            }
+        }
     }
 }
+
+
